@@ -1,8 +1,8 @@
 // Constants for configuration
 const SPREADSHEET_ID = '1NMWNUQILbWR1NONJzqxGuZeQ1ERezixnNNcI5skl-5w';
-const USER_NAME = 'Michael C.'; // Replace with your actual name.
+const USER_NAME = 'Michael C.';
 const CALENDAR_NAME = 'Work Shifts';
-const SPECIAL_SHIFT_ROW_COUNT = 2; // Last two rows for special shifts.
+const SECONDARY_LOCATION_ROWS = 2; // Last two rows for special shifts.
 
 function checkForNewSheetAndUpdateCalendar() {
   const sheet = getSecondToLastSheet();
@@ -68,7 +68,7 @@ function createEventDetails(date, day, shiftTime, shiftIndex, shiftTimesLength) 
   const startDateTime = parseDateTime(date, startTime);
   const endDateTime = parseDateTime(date, endTime, startDateTime);
 
-  const isSpecialShift = (shiftIndex >= shiftTimesLength - SPECIAL_SHIFT_ROW_COUNT);
+  const isSpecialShift = (shiftIndex >= shiftTimesLength - SECONDARY_LOCATION_ROWS);
   const location = isSpecialShift ? 'Tipuana MPR' : 'Gayley Heights';
 
   return { day, startDateTime, endDateTime, location };
